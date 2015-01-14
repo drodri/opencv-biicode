@@ -33,9 +33,11 @@ else:
 	if not os.path.exists(build_folder):
 		os.makedirs(build_folder)
 		os.chdir(build_folder)
+		# These flags are to disable compiling many targets that are not libs, not required by the user
+		cmake_flags=" -DBUILD_EXAMPLES=OFF -DBUILD_DOCS=OFF -DBUILD_TESTS=OFF -DBUILD_opencv_apps=OFF -DBUILD_PERF_TESTS=OFF"
 		if platform.system() != "Darwin":
 			os.system('sudo apt-get install libgtk2.0-dev pkg-config')
-			os.system('cmake ../sources')
+			os.system('cmake ../sources %s' % (cmake_flags))
 		else:
-			os.system('cmake -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ ../sources')
+			os.system('cmake -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ ../sources %s' % (cmake_flags))
 		os.system('make -j4')
