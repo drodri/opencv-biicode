@@ -44,7 +44,7 @@ else:
                 os.system('sudo apt-get install libgtk2.0-dev pkg-config')
             elif dist in ("Fedora", "CentOS"):
                 bii.out.info("Fedora/Centos compiling...")
-                os.system('yum install gtk+-devel gtk2-devel')
+                os.system('sudo yum install gtk+-devel gtk2-devel')
             else:
             	bii.out.error("Error, linux distribution not supported: %s" % dist)
             os.system('cmake ../sources %s' % (cmake_flags))
