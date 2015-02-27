@@ -36,6 +36,11 @@ else:
         cmake_flags=" -DBUILD_EXAMPLES=OFF -DBUILD_DOCS=OFF -DBUILD_TESTS=OFF -DBUILD_opencv_apps=OFF -DBUILD_PERF_TESTS=OFF"
         osinfo = platform.system()
         bii.out.info("OS: %s" % osinfo)
+        cmake_file_path = os.path.join(bii.environment_folder, "cmake_path")
+        if os.path.exists(cmake_file_path):
+            with open(cmake_file_path, "r") as f:
+                cmake_path = f.read().strip()
+                os.environ["PATH"] += os.pathsep + cmake_path
         if osinfo == 'Linux':            
             dist = platform.linux_distribution()[0]
             bii.out.info("Detected Linux...")
@@ -46,7 +51,7 @@ else:
                 bii.out.info("Fedora/Centos compiling...")
                 os.system('sudo yum install gtk+-devel gtk2-devel')
             else:
-            	bii.out.error("Error, linux distribution not supported: %s" % dist)
+                bii.out.error("Error, linux distribution not supported: %s" % dist)
             os.system('cmake ../sources %s' % (cmake_flags))
         elif osinfo == 'Darwin':
             bii.out.info("OSx compiling...")
