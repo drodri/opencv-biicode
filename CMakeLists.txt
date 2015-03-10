@@ -1,7 +1,6 @@
 # This CMakeLists.txt file helps defining your block building and compiling
 # Include the main biicode macros and functions
 # To learn more about the CMake use with biicode, visit http://docs.biicode.com/c++/building.html
-# Or check the examples below
 
 set(OpenCV_DIR "${BIICODE_ENV_DIR}/opencv/3.0/build")
 FIND_PACKAGE(OpenCV REQUIRED)
