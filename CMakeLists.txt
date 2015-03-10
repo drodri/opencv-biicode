@@ -3,10 +3,6 @@
 # To learn more about the CMake use with biicode, visit http://docs.biicode.com/c++/building.html
 # Or check the examples below
 
-
-include(${CMAKE_HOME_DIRECTORY}/biicode.cmake)
-# Initializes block variables
-
 set(OpenCV_DIR "${BIICODE_ENV_DIR}/opencv/2.4.10/build")
 FIND_PACKAGE(OpenCV REQUIRED)
 
